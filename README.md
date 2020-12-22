@@ -10,11 +10,11 @@ this is a horrible mish-mash of Johan's Nucleo crate and my changes.
 
 1. Clone this repository
 
-### Flash using Probe.rs
+### Flash using [Probe.rs](https://crates.io/crates/probe-rs)
 
 ```cargo flash --chip stm32f401re --example button-interrupt```
 
-Or with cargo embed
+Or with [cargo embed](https://crates.io/crates/cargo-embed)
 
 ```cargo embed --release --example button-rtic```
 

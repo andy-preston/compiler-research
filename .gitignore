@@ -1,7 +1,4 @@
 /target/
+/plop/
+/.vscode/
 Cargo.lock
-**.orig
-**~
-**.bk
-**.sw*
-.idea/

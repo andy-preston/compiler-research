@@ -1,8 +1,5 @@
 # Board Support Crate for STM32F401 (Black Pill) Development Board
 
-Based on
-[jkristell/nucleo-f401re](https://github.com/jkristell/nucleo-f401re)
-
 **Nothing's been finished yet**...
 this is a horrible mish-mash of Johan's Nucleo crate and my changes.
 
@@ -24,4 +21,7 @@ this is a horrible mish-mash of Johan's Nucleo crate and my changes.
 * User button on PA0
 * Serial port through ST-LINK on USART2, Tx: PA2 and Rx: PA3.
 
-This repository is based on https://github.com/therealprof/stm32f407g-disc
+This repository is forked from
+[jkristell/nucleo-f401re](https://github.com/jkristell/nucleo-f401re)
+which, in turn, was based on
+[therealprof/stm32f407g-disc](https://github.com/therealprof/stm32f407g-disc)

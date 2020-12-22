@@ -5,7 +5,7 @@ use cortex_m_rt::entry;
 use panic_rtt_target as _;
 use rtt_target::rprintln;
 
-use nucleo_f401re::{
+use stm32f401_black_pill::{
     hal::{i2c::I2c, prelude::*},
     pac,
 };

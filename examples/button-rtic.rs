@@ -4,14 +4,14 @@
 use panic_rtt_target as _;
 use rtt_target::{rprintln, rtt_init_print};
 
-use nucleo_f401re::{
+use stm32f401_black_pill::{
     hal::{gpio::Edge, prelude::*},
     Button, Led,
 };
 
 use rtic::app;
 
-#[app(device = nucleo_f401re::pac, peripherals = true)]
+#[app(device = stm32f401_black_pill::pac, peripherals = true)]
 const APP: () = {
     struct Resources {
         button: Button,
@@ -34,11 +34,11 @@ const APP: () = {
         let gpioc = device.GPIOC.split();
 
         // Setup Button and enable external interrupt
-        let mut button = Button::new(gpioc.pc13);
+        let mut button = Button::new(gpioa.pa0);
         button.enable_interrupt(Edge::RISING, &mut device.SYSCFG, &mut device.EXTI);
 
         // Setup the led
-        let led = Led::new(gpioa.pa5);
+        let led = Led::new(gpioc.pc13);
 
         rprintln!("init done");
 

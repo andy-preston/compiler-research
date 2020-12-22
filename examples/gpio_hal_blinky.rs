@@ -6,7 +6,7 @@ use cortex_m_rt::entry;
 use panic_rtt_target as _;
 use rtt_target;
 
-use nucleo_f401re::{
+use stm32f401_black_pill::{
     hal::{delay::Delay, prelude::*},
     pac, Led,
 };
@@ -18,10 +18,10 @@ fn main() -> ! {
     let p = pac::Peripherals::take().unwrap();
     let cp = Peripherals::take().unwrap();
 
-    let gpioa = p.GPIOA.split();
+    let gpioc = p.GPIOC.split();
 
-    // (Re-)configure PA5 (LD2 - User Led) as output
-    let mut led = Led::new(gpioa.pa5);
+    // (Re-)configure PC13 (User Led) as output
+    let mut led = Led::new(gpioc.pc13);
     led.set(false);
 
     // Constrain clock registers

@@ -9,7 +9,7 @@ use panic_rtt_target as _;
 
 use embedded_hal::digital::v1_compat::OldOutputPin;
 use hd44780_driver::HD44780;
-use nucleo_f401re::{
+use stm32f401_black_pill::{
     hal::{delay::Delay, prelude::*},
     pac,
 };

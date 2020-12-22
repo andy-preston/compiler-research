@@ -8,7 +8,7 @@ use cortex_m::peripheral::Peripherals;
 use cortex_m_rt::entry;
 use panic_rtt_target as _;
 
-use nucleo_f401re::{
+use stm32f401_black_pill::{
     hal::{
         interrupt,
         prelude::*,
@@ -30,9 +30,9 @@ fn main() -> ! {
     // Enable the clock for the SYSCFG
     p.RCC.apb2enr.modify(|_, w| w.syscfgen().enabled());
 
-    let gpioa = p.GPIOA.split();
+    let gpioc = p.GPIOC.split();
 
-    let led = Led::new(gpioa.pa5);
+    let led = Led::new(gpioc.pc13);
 
     cortex_m::interrupt::free(|cs| {
         LED.borrow(cs).replace(Some(led));

@@ -10,7 +10,7 @@ use cortex_m_rt::entry;
 use panic_rtt_target as _;
 use rtt_target;
 
-use nucleo_f401re::{
+use stm32f401_black_pill::{
     hal::{gpio::Edge, interrupt, prelude::*},
     pac, Button, Led,
 };
@@ -38,11 +38,9 @@ fn main() -> ! {
     let gpioa = device.GPIOA.split();
     let gpioc = device.GPIOC.split();
 
-    // Configure PA5 (LD2 - User led) as an output
-    let mut led = Led::new(gpioa.pa5);
+    let mut led = Led::new(gpioc.pc13);
 
-    // Configure PC5 (User B1) as an input and enable external interrupt
-    let mut button = Button::new(gpioc.pc13);
+    let mut button = Button::new(gpioa.pa0);
     button.enable_interrupt(Edge::RISING, &mut device.SYSCFG, &mut device.EXTI);
 
     cortex_m::interrupt::free(|cs| {

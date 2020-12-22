@@ -9,7 +9,7 @@ use cortex_m::peripheral::Peripherals;
 use cortex_m_rt::entry;
 use panic_rtt_target as _;
 
-use nucleo_f401re::{
+use stm32f401_black_pill::{
     hal::{
         delay::Delay,
         gpio::Edge,
@@ -42,11 +42,11 @@ fn main() -> ! {
     let rcc = dp.RCC.constrain();
     let clocks = rcc.cfgr.sysclk(84.mhz()).freeze();
 
+    let gpioa = dp.GPIOA.split();
     let gpiob = dp.GPIOB.split();
-    let gpioc = dp.GPIOC.split();
 
     // Setup button
-    let mut button = Button::new(gpioc.pc13);
+    let mut button = Button::new(gpioa.pa0);
     button.enable_interrupt(Edge::FALLING, &mut dp.SYSCFG, &mut dp.EXTI);
 
     let mut delay = Delay::new(p.SYST, clocks);

@@ -1,27 +1,33 @@
-use stm32f4xx_hal::gpio::{gpioa::PA5, Output, PushPull};
+use stm32f4xx_hal::gpio::{gpioc::PC13, Output, PushPull};
 
 use embedded_hal::digital::v2::{OutputPin, ToggleableOutputPin};
 
-/// Onboard led
 pub struct Led {
-    pa5: PA5<Output<PushPull>>,
+    pc13: PC13<Output<PushPull>>,
 }
 
 impl Led {
-    pub fn new<M>(pin: PA5<M>) -> Self {
-        let pa5 = pin.into_push_pull_output();
-        Self { pa5 }
+    pub fn new<M>(
+        pin: PC13<M>
+    ) -> Self {
+        let pc13 = pin.into_push_pull_output();
+        Self { pc13 }
     }
 
-    pub fn set(&mut self, enable: bool) {
+    pub fn set(
+        &mut self,
+        enable: bool
+    ) {
         if enable {
-            self.pa5.set_high().ok();
+            self.pc13.set_high().ok();
         } else {
-            self.pa5.set_low().ok();
+            self.pc13.set_low().ok();
         }
     }
 
-    pub fn toggle(&mut self) {
-        self.pa5.toggle().ok();
+    pub fn toggle(
+        &mut self
+    ) {
+        self.pc13.toggle().ok();
     }
 }

@@ -10,14 +10,13 @@ this is a horrible mish-mash of Johan's Nucleo crate and my changes.
 
 1. Clone this repository
 2. Flash an example
+    1. Using [Probe.rs](https://crates.io/crates/probe-rs)
 
-### Using [Probe.rs](https://crates.io/crates/probe-rs)
+        ```cargo flash --chip stm32f401cc --example button-interrupt```
 
-```cargo flash --chip stm32f401re --example button-interrupt```
+    2. Using [cargo embed](https://crates.io/crates/cargo-embed)
 
-### Using [cargo embed](https://crates.io/crates/cargo-embed)
-
-```cargo embed --release --example button-rtic```
+        ```cargo embed --release --example button-rtic```
 
 ## Board properties
 

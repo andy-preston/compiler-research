@@ -1,6 +1,6 @@
 [package]
 authors = ["Andy Preston <edgeeffect@gmail.com>"]
-name = "stm32f401-black-pill"
+name = "stm32f401_black_pill"
 version = "0.0.1"
 edition = "2018"
 description = "Board Support crate for STM32F401 Black Pill development board"

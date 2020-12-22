@@ -24,7 +24,7 @@ The updater can be found at: https://www.st.com/en/development-tools/stsw-link00
 ## Board properties
 
  * User led on PA5
- * User button on PC13
  * Serial port through ST-LINK on USART2, Tx: PA2 and Rx: PA3.
+* User button on PA0
 
 This repository is based on https://github.com/therealprof/stm32f407g-disc

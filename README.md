@@ -1,10 +1,15 @@
-## Support package for the [Nucleo-f401re](https://www.st.com/en/evaluation-tools/nucleo-f401re.html) board.
+# Board Support Crate for STM32F401 (Black Pill) Development Board
 
-### Running the examples
+Based on https://github.com/jkristell/nucleo-f401re
+
+**Nothing's been done as yet**... this is currently a straight fork of
+Johan's Nucleo crate.
+
+## Running the examples
 
 1. Clone this repository
 
-#### Flash using Probe.rs
+### Flash using Probe.rs
 
 ```cargo flash --chip stm32f401re --example button-interrupt```
 
@@ -15,7 +20,7 @@ Or with cargo embed
 If probe fails to flash your board you probably need to update the firmware on the onboard programmer.
 The updater can be found at: https://www.st.com/en/development-tools/stsw-link007.html
 
-### Board properties
+## Board properties
 
  * User led on PA5
  * User button on PC13

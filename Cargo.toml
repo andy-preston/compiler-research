@@ -1,17 +1,18 @@
 [package]
-authors = ["Johan Kristell <johan@jott.se>"]
-name = "nucleo-f401re"
-version = "0.4.1"
+authors = ["Andy Preston <edgeeffect@gmail.com>"]
+name = "stm32f401-black-pill"
+version = "0.0.1"
 edition = "2018"
-description = "Board Support crate for the STM32 NUCLEO-f401RE development board"
-repository = "https://github.com/jkristell/nucleo-f401re"
+description = "Board Support crate for STM32F401 Black Pill development board"
+repository = "https://gitlab.com/edgeeffect/stm32f401-black-pill"
 readme = "README.md"
 license = "0BSD"
 keywords = [
     "arm",
     "cortex-m",
     "stm32f401",
-    "nucleo",
+    "black",
+    "pill",
     "template",
 ]
 categories = [

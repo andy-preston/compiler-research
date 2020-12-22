@@ -9,22 +9,20 @@ this is a horrible mish-mash of Johan's Nucleo crate and my changes.
 ## Running the examples
 
 1. Clone this repository
+2. Flash an example
 
-### Flash using [Probe.rs](https://crates.io/crates/probe-rs)
+### Using [Probe.rs](https://crates.io/crates/probe-rs)
 
 ```cargo flash --chip stm32f401re --example button-interrupt```
 
-Or with [cargo embed](https://crates.io/crates/cargo-embed)
+### Using [cargo embed](https://crates.io/crates/cargo-embed)
 
 ```cargo embed --release --example button-rtic```
-
-If probe fails to flash your board you probably need to update the firmware on the onboard programmer.
-The updater can be found at: https://www.st.com/en/development-tools/stsw-link007.html
 
 ## Board properties
 
 * User led on PC13
- * Serial port through ST-LINK on USART2, Tx: PA2 and Rx: PA3.
 * User button on PA0
+* Serial port through ST-LINK on USART2, Tx: PA2 and Rx: PA3.
 
 This repository is based on https://github.com/therealprof/stm32f407g-disc

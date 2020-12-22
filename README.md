@@ -3,8 +3,8 @@
 Based on
 [jkristell/nucleo-f401re](https://github.com/jkristell/nucleo-f401re)
 
-**Nothing's been done as yet**... this is currently a straight fork of
-Johan's Nucleo crate.
+**Nothing's been finished yet**...
+this is a horrible mish-mash of Johan's Nucleo crate and my changes.
 
 ## Running the examples
 

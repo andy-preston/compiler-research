@@ -7,7 +7,7 @@ this is a horrible mish-mash of Johan's Nucleo crate and my changes.
 
 1. Clone this repository
 2. Flash an example
-    1. Using [Probe.rs](https://crates.io/crates/probe-rs)
+    1. Using [Probe.rs](https://crates.io/crates/probe-rs)[^1]
 
         ```cargo flash --chip stm32f401cc --example button-interrupt```
 
@@ -25,3 +25,12 @@ This repository is forked from
 [jkristell/nucleo-f401re](https://github.com/jkristell/nucleo-f401re)
 which, in turn, was based on
 [therealprof/stm32f407g-disc](https://github.com/therealprof/stm32f407g-disc)
+
+## Contributing
+
+[^1]: I've not tested this with probe.rs yet.
+If anyone reading this has experience with probe.rs,
+their assistance would be greatly appreciated.
+
+Testing, improvements, bugs, fixes and documentation improvements
+are all greatly appreciated.

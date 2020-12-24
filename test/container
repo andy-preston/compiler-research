@@ -1,0 +1,36 @@
+#!/bin/bash
+
+# BE CAREFUL - this scrubs your whole system's Docker files
+# docker system prune --volumes -a
+
+APP_NAME="cargo_flash_embed_test"
+CONT_NAME=running_$APP_NAME
+
+case $1 in
+'run')
+    docker run \
+        --rm \
+        --interactive --tty \
+        --user $(id -u):$(id -g) \
+        --volume $(pwd):/usr/local/src \
+        --name $CONT_NAME \
+        $APP_NAME
+    ;;
+'build')
+    docker build \
+        --build-arg APP_NAME=$APP_NAME \
+        --tag \
+        $APP_NAME ./test
+    ;;
+'shell')
+    docker container exec \
+        --interactive --tty \
+        $CONT_NAME \
+        bash
+    ;;
+*)
+    echo -e "\nUsage:"
+    echo "./test/container [run|build|shell]"
+    echo -e "\n"
+    ;;
+esac

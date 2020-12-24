@@ -22,6 +22,11 @@ RUN rustup-init -y --profile minimal --no-modify-path \
 RUN cargo install cargo-flash && \
     cargo install cargo-embed
 
+WORKDIR /usr/local
+
+RUN find -type f -exec chmod ugo+rw {} \; && \
+    find -type d -exec chmod ugo+rwx {} \;
+
 WORKDIR /usr/local/src
 
 CMD ["bash"]

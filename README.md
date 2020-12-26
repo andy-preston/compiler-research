@@ -3,23 +3,34 @@
 **Nothing's been finished yet**...
 this is a horrible mish-mash of Johan's Nucleo crate and my changes.
 
-## Running the examples
+## Building the examples
 
-1. Clone this repository
-2. Flash an example
-    1. Using [Probe.rs](https://crates.io/crates/probe-rs)[^1]
+After cloning this repository
 
-        ```cargo flash --chip stm32f401cc --example button-interrupt```
+```cargo build --release --chip stm32f401cc --example button-interrupt```
 
-    2. Using [cargo embed](https://crates.io/crates/cargo-embed)
+You should then  find an ELF binary in
+```target/thumbv7em-none-eabihf/release/examples/```
 
-        ```cargo embed --release --example button-rtic```
+## Flashing the examples
+
+This can be done from within Cargo using
+[cargo-flash](https://github.com/probe-rs/cargo-flash)
+or
+[cargo-embed](https://github.com/probe-rs/cargo-embed)
+
+There's also various uploaders available from outside the Rust ecosystem.
+
+*Just to complicate matters further I'm using a
+[Black Magic Probe](https://github.com/rust-embedded/debugonomicon/blob/master/src/overview.md#black-magic-probe)
 
 ## Board properties
 
+* STM32F401CC microcontroller
 * User led on PC13
 * User button on PA0
-* Serial port through ST-LINK on USART2, Tx: PA2 and Rx: PA3.
+* Power supply
+* Micro USB connector
 
 This repository is forked from
 [jkristell/nucleo-f401re](https://github.com/jkristell/nucleo-f401re)
@@ -27,10 +38,6 @@ which, in turn, was based on
 [therealprof/stm32f407g-disc](https://github.com/therealprof/stm32f407g-disc)
 
 ## Contributing
-
-[^1]: I've not tested this with probe.rs yet.
-If anyone reading this has experience with probe.rs,
-their assistance would be greatly appreciated.
 
 Testing, improvements, bugs, fixes and documentation improvements
 are all greatly appreciated.

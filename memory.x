@@ -1,8 +1,12 @@
+/*
+ * STM32F401CC - https://www.st.com/resource/en/datasheet/stm32f401cb.pdf
+ */
+
 MEMORY
 {
   /* NOTE K = KiBi = 1024 bytes */
-  FLASH : ORIGIN = 0x08000000, LENGTH = 512K
-  RAM : ORIGIN = 0x20000000, LENGTH = 96K
+  FLASH : ORIGIN = 0x08000000, LENGTH = 256K
+  RAM : ORIGIN = 0x20000000, LENGTH = 64K
 }
 
 /* This is where the call stack will be allocated. */

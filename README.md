@@ -14,15 +14,8 @@ You should then  find an ELF binary in
 
 ## Flashing the examples
 
-This can be done from within Cargo using
-[cargo-flash](https://github.com/probe-rs/cargo-flash)
-or
-[cargo-embed](https://github.com/probe-rs/cargo-embed)
-
-There's also various uploaders available from outside the Rust ecosystem.
-
-*Just to complicate matters further I'm using a
-[Black Magic Probe](https://github.com/rust-embedded/debugonomicon/blob/master/src/overview.md#black-magic-probe)
+If you modify ```.cargo/config``` to use whatever command you use for flashing
+under ```runner=``` you can just use ```cargo run``` to compile and flash.
 
 ## Board properties
 

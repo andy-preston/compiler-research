@@ -14,7 +14,8 @@ use stm32f401_black_pill::{
         prelude::*,
         timer::{Event, Timer},
     },
-    pac, Led,
+    pac,
+    Led,
 };
 
 static TIMER: Mutex<RefCell<Option<Timer<pac::TIM2>>>> = Mutex::new(

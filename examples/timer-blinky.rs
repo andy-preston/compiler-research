@@ -2,9 +2,7 @@
 #![no_std]
 
 use core::cell::RefCell;
-
 use cortex_m::interrupt::Mutex;
-use cortex_m::peripheral::Peripherals;
 use cortex_m_rt::entry;
 use panic_rtt_target as _;
 
@@ -30,13 +28,12 @@ static LED: Mutex<RefCell<Option<Led>>> = Mutex::new(
 fn main() -> ! {
     rtt_target::rtt_init_default!();
 
-    let p = pac::Peripherals::take().unwrap();
-    let _core = Peripherals::take().unwrap();
+    let device = pac::Peripherals::take().unwrap();
 
     // Enable the clock for the SYSCFG
-    p.RCC.apb2enr.modify(|_, w| w.syscfgen().enabled());
+    device.RCC.apb2enr.modify(|_, w| w.syscfgen().enabled());
 
-    let gpioc = p.GPIOC.split();
+    let gpioc = device.GPIOC.split();
 
     let led = Led::new(gpioc.pc13);
 
@@ -44,11 +41,11 @@ fn main() -> ! {
         LED.borrow(cs).replace(Some(led));
     });
 
-    let rcc = p.RCC.constrain();
+    let rcc = device.RCC.constrain();
     let clocks = rcc.cfgr.sysclk(84.mhz()).freeze();
 
     // Set up timer
-    let mut timer = Timer::tim2(p.TIM2, 1.hz(), clocks);
+    let mut timer = Timer::tim2(device.TIM2, 1.hz(), clocks);
 
     // Enable interrupt
     timer.listen(Event::TimeOut);

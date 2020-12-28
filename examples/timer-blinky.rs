@@ -17,12 +17,17 @@ use stm32f401_black_pill::{
     pac, Led,
 };
 
-static TIMER: Mutex<RefCell<Option<Timer<pac::TIM2>>>> = Mutex::new(RefCell::new(None));
-static LED: Mutex<RefCell<Option<Led>>> = Mutex::new(RefCell::new(None));
+static TIMER: Mutex<RefCell<Option<Timer<pac::TIM2>>>> = Mutex::new(
+    RefCell::new(None)
+);
+
+static LED: Mutex<RefCell<Option<Led>>> = Mutex::new(
+    RefCell::new(None)
+);
 
 #[entry]
 fn main() -> ! {
-    rtt_target::rtt_init_print!();
+    rtt_target::rtt_init_default!();
 
     let p = pac::Peripherals::take().unwrap();
     let _core = Peripherals::take().unwrap();
@@ -41,7 +46,7 @@ fn main() -> ! {
     let rcc = p.RCC.constrain();
     let clocks = rcc.cfgr.sysclk(84.mhz()).freeze();
 
-    // Setup timer
+    // Set up timer
     let mut timer = Timer::tim2(p.TIM2, 1.hz(), clocks);
 
     // Enable interrupt
@@ -52,7 +57,9 @@ fn main() -> ! {
     });
 
     // Enable TIM2 interrupt
-    unsafe { cortex_m::peripheral::NVIC::unmask(pac::Interrupt::TIM2) }
+    unsafe {
+        cortex_m::peripheral::NVIC::unmask(pac::Interrupt::TIM2)
+    }
 
     loop {}
 }

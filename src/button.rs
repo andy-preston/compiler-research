@@ -1,6 +1,6 @@
 use stm32f4xx_hal::gpio::{gpioa::PA0, Edge, ExtiPin, Input, PullUp};
-
 use stm32f4xx_hal::stm32::{EXTI, SYSCFG};
+use embedded_hal::digital::v2::{InputPin};
 
 pub struct Button {
     pin: PA0<Input<PullUp>>,
@@ -12,6 +12,18 @@ impl Button {
     ) -> Self {
         let pin = pa0.into_pull_up_input();
         Self { pin }
+    }
+
+    pub fn is_high(
+        &mut self
+    ) -> bool {
+        return self.pin.is_high().unwrap();
+    }
+
+    pub fn is_low(
+        &mut self
+    ) -> bool {
+        return self.pin.is_low().unwrap();
     }
 
     pub fn enable_interrupt(

@@ -3,37 +3,31 @@
 
 use core::cell::RefCell;
 use core::sync::atomic::{AtomicBool, Ordering};
-
 use cortex_m::interrupt::Mutex;
-use cortex_m::peripheral::Peripherals;
 use cortex_m_rt::entry;
 use panic_rtt_target as _;
 use rtt_target;
 
 use stm32f401_black_pill::{
     hal::{gpio::Edge, interrupt, prelude::*},
-    pac, Button, Led,
+    pac,
+    Button,
+    Led
 };
 
 // Used to signal to the main loop that it should toggle the led
 static SIGNAL: AtomicBool = AtomicBool::new(false);
 
-static BUTTON: Mutex<RefCell<Option<Button>>> = Mutex::new(RefCell::new(None));
+static BUTTON: Mutex<RefCell<Option<Button>>> = Mutex::new(
+    RefCell::new(None)
+);
 
 #[entry]
 fn main() -> ! {
-    rtt_target::rtt_init_print!();
+    rtt_target::rtt_init_default!();
 
     // The Stm32 peripherals
     let mut device = pac::Peripherals::take().unwrap();
-    // The Cortex-m peripherals
-    let _core = Peripherals::take().unwrap();
-
-    // Enable the clock for the SYSCFG
-    device.RCC.apb2enr.modify(|_, w| w.syscfgen().enabled());
-    // Constrain clock registers
-    let rcc = device.RCC.constrain();
-    let _clocks = rcc.cfgr.sysclk(84.mhz()).freeze();
 
     let gpioa = device.GPIOA.split();
     let gpioc = device.GPIOC.split();
@@ -41,7 +35,11 @@ fn main() -> ! {
     let mut led = Led::new(gpioc.pc13);
 
     let mut button = Button::new(gpioa.pa0);
-    button.enable_interrupt(Edge::RISING, &mut device.SYSCFG, &mut device.EXTI);
+    button.enable_interrupt(
+        Edge::FALLING,
+        &mut device.SYSCFG,
+        &mut device.EXTI
+    );
 
     cortex_m::interrupt::free(|cs| {
         BUTTON.borrow(cs).replace(Some(button));
@@ -49,7 +47,9 @@ fn main() -> ! {
 
     // Enable the external interrupt
     unsafe {
-        cortex_m::peripheral::NVIC::unmask(pac::Interrupt::EXTI15_10);
+        cortex_m::peripheral::NVIC::unmask(
+            pac::Interrupt::EXTI0
+        );
     }
 
     loop {
@@ -62,7 +62,7 @@ fn main() -> ! {
 }
 
 #[interrupt]
-fn EXTI15_10() {
+fn EXTI0() {
     // Clear the interrupt
     cortex_m::interrupt::free(|cs| {
         let mut button = BUTTON.borrow(cs).borrow_mut();

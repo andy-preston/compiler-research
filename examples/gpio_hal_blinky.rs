@@ -13,7 +13,7 @@ use stm32f401_black_pill::{
 
 #[entry]
 fn main() -> ! {
-    rtt_target::rtt_init_print!();
+    rtt_target::rtt_init_default!();
 
     let p = pac::Peripherals::take().unwrap();
     let cp = Peripherals::take().unwrap();

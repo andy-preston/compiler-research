@@ -8,7 +8,8 @@ use rtt_target;
 
 use stm32f401_black_pill::{
     hal::{delay::Delay, prelude::*},
-    pac, Led,
+    pac,
+    Led,
 };
 
 #[entry]
@@ -16,7 +17,7 @@ fn main() -> ! {
     rtt_target::rtt_init_default!();
 
     let p = pac::Peripherals::take().unwrap();
-    let cp = Peripherals::take().unwrap();
+    let cortex_peripherals = Peripherals::take().unwrap();
 
     let gpioc = p.GPIOC.split();
 
@@ -30,7 +31,10 @@ fn main() -> ! {
     let clocks = rcc.cfgr.sysclk(84.mhz()).freeze();
 
     // Get delay provider
-    let mut delay = Delay::new(cp.SYST, clocks);
+    let mut delay = Delay::new(
+        cortex_peripherals.SYST,
+        clocks
+    );
 
     loop {
         delay.delay_ms(500_u16);

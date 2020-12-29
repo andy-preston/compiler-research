@@ -5,12 +5,14 @@ use core::cell::RefCell;
 use cortex_m::interrupt::Mutex;
 use cortex_m_rt::entry;
 use panic_rtt_target as _;
-
 use stm32f401_black_pill::{
     hal::{
         interrupt,
         prelude::*,
-        timer::{Event, Timer},
+        timer::{
+            Event,
+            Timer
+        },
     },
     pac,
     Led,
@@ -34,7 +36,6 @@ fn main() -> ! {
     device.RCC.apb2enr.modify(|_, w| w.syscfgen().enabled());
 
     let gpioc = device.GPIOC.split();
-
     let led = Led::new(gpioc.pc13);
 
     cortex_m::interrupt::free(|cs| {

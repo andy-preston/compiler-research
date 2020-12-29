@@ -2,14 +2,20 @@
 #![no_std]
 
 use core::cell::RefCell;
-use core::sync::atomic::{AtomicBool, Ordering};
+use core::sync::atomic::{
+    AtomicBool,
+    Ordering
+};
 use cortex_m::interrupt::Mutex;
 use cortex_m_rt::entry;
 use panic_rtt_target as _;
 use rtt_target;
-
 use stm32f401_black_pill::{
-    hal::{gpio::Edge, interrupt, prelude::*},
+    hal::{
+        gpio::Edge,
+        interrupt,
+        prelude::*
+    },
     pac,
     Button,
     Led

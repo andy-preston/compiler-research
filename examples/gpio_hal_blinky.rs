@@ -5,9 +5,11 @@ use cortex_m::peripheral::Peripherals;
 use cortex_m_rt::entry;
 use panic_rtt_target as _;
 use rtt_target;
-
 use stm32f401_black_pill::{
-    hal::{delay::Delay, prelude::*},
+    hal::{
+        delay::Delay,
+        prelude::*
+    },
     pac,
     Led,
 };
@@ -19,9 +21,8 @@ fn main() -> ! {
     let p = pac::Peripherals::take().unwrap();
     let cortex_peripherals = Peripherals::take().unwrap();
 
-    let gpioc = p.GPIOC.split();
-
     // (Re-)configure PC13 (User Led) as output
+    let gpioc = p.GPIOC.split();
     let mut led = Led::new(gpioc.pc13);
     led.set(false);
 

@@ -11,23 +11,23 @@ use stm32f401_black_pill::{
         prelude::*
     },
     pac,
-    Led,
+    Led
 };
 
 #[entry]
 fn main() -> ! {
     rtt_target::rtt_init_default!();
 
-    let p = pac::Peripherals::take().unwrap();
+    let device = pac::Peripherals::take().unwrap();
     let cortex_peripherals = Peripherals::take().unwrap();
 
     // (Re-)configure PC13 (User Led) as output
-    let gpioc = p.GPIOC.split();
+    let gpioc = device.GPIOC.split();
     let mut led = Led::new(gpioc.pc13);
     led.set(false);
 
     // Constrain clock registers
-    let rcc = p.RCC.constrain();
+    let rcc = device.RCC.constrain();
 
     let clocks = rcc.cfgr.sysclk(84.mhz()).freeze();
 

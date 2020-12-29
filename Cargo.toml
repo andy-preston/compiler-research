@@ -29,11 +29,10 @@ stm32f4xx-hal = { version = "0.8", features = ["rt", "stm32f401"] }
 [dev-dependencies]
 # used by serial-echo example
 nb = "0.1"
+# used by button-rtic example to log program state
+cortex-m-semihosting = "0.3"
 # used by examples to provide panic handler
-# and button-rtic example to log program state
-rtt-target = { version = "0.2.0", features = ["cortex-m"] }
-# used by examples to provide panic handler
-panic-rtt-target = { version = "0.1.0", features = ["cortex-m"] }
+panic-semihosting = "0.5"
 # used by button-rtic example
 cortex-m-rtic = "0.5"
 

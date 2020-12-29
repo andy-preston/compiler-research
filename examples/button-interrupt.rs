@@ -8,8 +8,7 @@ use core::sync::atomic::{
 };
 use cortex_m::interrupt::Mutex;
 use cortex_m_rt::entry;
-use panic_rtt_target as _;
-use rtt_target;
+use panic_semihosting as _;
 use stm32f401_black_pill::{
     hal::{
         gpio::Edge,
@@ -30,8 +29,6 @@ static BUTTON: Mutex<RefCell<Option<Button>>> = Mutex::new(
 
 #[entry]
 fn main() -> ! {
-    rtt_target::rtt_init_default!();
-
     // The Stm32 peripherals
     let mut device = pac::Peripherals::take().unwrap();
 

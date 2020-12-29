@@ -3,8 +3,7 @@
 
 use cortex_m::peripheral::Peripherals;
 use cortex_m_rt::entry;
-use panic_rtt_target as _;
-use rtt_target;
+use panic_semihosting as _;
 use stm32f401_black_pill::{
     hal::{
         delay::Delay,
@@ -16,8 +15,6 @@ use stm32f401_black_pill::{
 
 #[entry]
 fn main() -> ! {
-    rtt_target::rtt_init_default!();
-
     let device = pac::Peripherals::take().unwrap();
     let cortex_peripherals = Peripherals::take().unwrap();
 

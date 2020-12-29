@@ -4,7 +4,7 @@
 use core::cell::RefCell;
 use cortex_m::interrupt::Mutex;
 use cortex_m_rt::entry;
-use panic_rtt_target as _;
+use panic_semihosting as _;
 use stm32f401_black_pill::{
     hal::{
         interrupt,
@@ -28,8 +28,6 @@ static LED: Mutex<RefCell<Option<Led>>> = Mutex::new(
 
 #[entry]
 fn main() -> ! {
-    rtt_target::rtt_init_default!();
-
     let device = pac::Peripherals::take().unwrap();
 
     // Enable the clock for the SYSCFG

@@ -27,15 +27,15 @@ embedded-hal = "0.2"
 stm32f4xx-hal = { version = "0.8", features = ["rt", "stm32f401"] }
 
 [dev-dependencies]
+# used by serial-echo example
 nb = "0.1"
+# used by examples to provide panic handler
+# and button-rtic example to log program state
 rtt-target = { version = "0.2.0", features = ["cortex-m"] }
+# used by examples to provide panic handler
 panic-rtt-target = { version = "0.1.0", features = ["cortex-m"] }
+# used by button-rtic example
 cortex-m-rtic = "0.5"
-hd44780-driver = "0.3.0"
-tpa2016d2 = "0.2.0"
-segment-display = "0.1"
-embedded-graphics = { version = "0.6" }
-epd-waveshare = { version = "0.4", features = ["graphics"] }
 
 [profile.dev]
 debug = true

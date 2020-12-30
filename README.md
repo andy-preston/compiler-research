@@ -1,7 +1,8 @@
 # Board Support Crate for STM32F401 (Black Pill) Development Board
 
-**Nothing's been finished yet**...
-this is a horrible mish-mash of Johan's Nucleo crate and my changes.
+This is more or less usable at this stage.
+I need to do a bit more in the way of documentation.
+And, at the moment, the ```serial_echo``` example is not working.
 
 ## Building the examples
 

@@ -1,0 +1,12 @@
+diff -Naur fpc/fpc/compiler/arm/cpuinfo.pas fpc-fixed/fpc/compiler/arm/cpuinfo.pas
+--- fpc/compiler/arm/cpuinfo.pas	2021-01-13 18:33:49.624355777 +0000
++++ fpc/compiler/arm/cpuinfo.pas	2021-01-13 18:35:00.069594756 +0000
+@@ -814,7 +814,7 @@
+       (controllertypestr:'STM32F401CB';     controllerunitstr:'STM32F401XX';      cputype:cpu_armv7em; fputype:fpu_soft; flashbase:$08000000; flashsize:$00020000; srambase:$20000000; sramsize:$00010000),
+       (controllertypestr:'STM32F401RB';     controllerunitstr:'STM32F401XX';      cputype:cpu_armv7em; fputype:fpu_soft; flashbase:$08000000; flashsize:$00020000; srambase:$20000000; sramsize:$00010000),
+       (controllertypestr:'STM32F401VB';     controllerunitstr:'STM32F401XX';      cputype:cpu_armv7em; fputype:fpu_soft; flashbase:$08000000; flashsize:$00020000; srambase:$20000000; sramsize:$00010000),
+-      (controllertypestr:'STM32F401CC';     controllerunitstr:'STM32F401XX';      cputype:cpu_armv7em; fputype:fpu_soft; flashbase:$08000000; flashsize:$00040000; srambase:$20000000; sramsize:$00010000),
++      (controllertypestr:'STM32F401CC';     controllerunitstr:'STM32F401XX';      cputype:cpu_armv7em; fputype:fpu_fpv4_s16; flashbase:$08000000; flashsize:$00040000; srambase:$20000000; sramsize:$00010000),
+       (controllertypestr:'STM32F401RC';     controllerunitstr:'STM32F401XX';      cputype:cpu_armv7em; fputype:fpu_soft; flashbase:$08000000; flashsize:$00040000; srambase:$20000000; sramsize:$00010000),
+       (controllertypestr:'STM32F401VC';     controllerunitstr:'STM32F401XX';      cputype:cpu_armv7em; fputype:fpu_soft; flashbase:$08000000; flashsize:$00040000; srambase:$20000000; sramsize:$00010000),
+       (controllertypestr:'DISCOVERYF401VC'; controllerunitstr:'STM32F401XX';      cputype:cpu_armv7em; fputype:fpu_soft; flashbase:$08000000; flashsize:$00040000; srambase:$20000000; sramsize:$00010000),

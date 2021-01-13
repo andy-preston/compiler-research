@@ -1,0 +1,30 @@
+#!/bin/bash
+
+# TODO: Provide a less "brutal" method for clearing out containers
+#
+# BE CAREFUL - this scrubs you whole system's Docker files
+#
+# docker system prune --volumes -a
+
+APP_NAME="compiler"
+RUN_NAME="running-$APP_NAME"
+
+case $1 in
+'run')
+    docker run \
+        --rm \
+        --interactive --tty \
+        --volume $(pwd):/usr/local/src \
+        --name $RUN_NAME $APP_NAME
+    ;;
+'shell')
+    docker container exec -it $RUN_NAME bash
+    ;;
+'build')
+    docker build -t $APP_NAME ./$APP_NAME
+    ;;
+*)
+    echo "./$APP_NAME/container [run|shell|build]"
+    ;;
+esac
+

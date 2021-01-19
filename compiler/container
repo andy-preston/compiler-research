@@ -10,12 +10,27 @@ APP_NAME="compiler"
 RUN_NAME="running-$APP_NAME"
 
 case $1 in
+'make')
+    OPTION='run'
+    COMMAND='bash ./make'
+    ;;
+'run')
+    OPTION='run'
+    COMMAND='bash'
+    ;;
+*)
+    OPTION=$1
+    ;;
+esac
+
+case $OPTION in
 'run')
     docker run \
         --rm \
         --interactive --tty \
+        --user $(id -u):$(id -g) \
         --volume $(pwd):/usr/local/src \
-        --name $RUN_NAME $APP_NAME
+        --name $RUN_NAME $APP_NAME $COMMAND
     ;;
 'shell')
     docker container exec -it $RUN_NAME bash
@@ -24,7 +39,7 @@ case $1 in
     docker build -t $APP_NAME ./$APP_NAME
     ;;
 *)
-    echo "./$APP_NAME/container [run|shell|build]"
+    echo "./$APP_NAME/container [make|run|shell|build]"
     ;;
 esac
 

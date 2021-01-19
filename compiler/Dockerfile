@@ -113,5 +113,3 @@ RUN ln -s /usr/local/lib/fpc/3.3.1/ppcrossarm /usr/local/bin/fpc && \
     ln -s /usr/bin/arm-none-eabi-strings /usr/bin/arm-embedded-strings && \
     ln -s /usr/bin/arm-none-eabi-strip /usr/bin/arm-embedded-strip
 
-
-CMD ["bash"]

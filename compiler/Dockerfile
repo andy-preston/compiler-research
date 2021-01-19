@@ -60,6 +60,7 @@ RUN svn co http://svn.freepascal.org/svn/fpc/trunk fpc && \
     cd fpc && \
     rm -rf .svn && \
     patch -p1 -i ../fpu.patch && \
+    tar cvf /usr/local/share/rtl.tar rtl/embedded/arm/* && \
     ln -s /usr/bin/arm-none-eabi-as /usr/bin/arm-embedded-as && \
     make buildbase installbase CROSSINSTALL=1 OS_TARGET=embedded \
         CPU_TARGET=arm SUBARCH=armv7em && \
@@ -90,6 +91,10 @@ RUN apt-get update && \
         /var/tmp/* \
         /usr/src/doc/*
 
+COPY --from=buildComp /usr/local/lib/fpc/3.3.1 /usr/local/lib/fpc/3.3.1
+COPY --from=buildComp /usr/local/share/rtl.tar /usr/local/share/rtl.tar
+COPY fpc.cfg /usr/local/lib/fpc/etc/fpc.cfg
+
 RUN ln -s /usr/local/lib/fpc/3.3.1/ppcrossarm /usr/local/bin/fpc && \
     ln -s /usr/bin/arm-none-eabi-addr2line /usr/bin/arm-embedded-addr2line && \
     ln -s /usr/bin/arm-none-eabi-ar /usr/bin/arm-embedded-ar && \
@@ -108,7 +113,5 @@ RUN ln -s /usr/local/lib/fpc/3.3.1/ppcrossarm /usr/local/bin/fpc && \
     ln -s /usr/bin/arm-none-eabi-strings /usr/bin/arm-embedded-strings && \
     ln -s /usr/bin/arm-none-eabi-strip /usr/bin/arm-embedded-strip
 
-COPY --from=buildComp /usr/local/lib/fpc/3.3.1 /usr/local/lib/fpc/3.3.1
-COPY fpc.cfg /usr/local/lib/fpc/etc/fpc.cfg
 
 CMD ["bash"]

@@ -1,5 +1,8 @@
 program Test;
 
+uses
+    stm32f401xx;
+
 var
     testVal: real;
 begin

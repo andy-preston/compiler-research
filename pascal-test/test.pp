@@ -1,13 +1,10 @@
 program Test;
 
-uses
-    stm32f401xx;
+uses stm32f401xx;
 
-var
-    testVal: real;
+label Endless;
+
 begin
-    testVal := 22.0 / 7.0;
-    while testVal < 23.0 do begin
-        testVal := testVal * 2.3;
-    end;
+Endless:
+    goto Endless;
 end.

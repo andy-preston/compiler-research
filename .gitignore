@@ -1,2 +1,7 @@
-pascal-test/
-!pascal-test/test.pp
+pascal-test/*.bin
+pascal-test/*.elf
+pascal-test/*.hex
+pascal-test/*.o
+pascal-test/*.s
+compiler/trunk.tar
+f4-i2s-dma-with-floats/

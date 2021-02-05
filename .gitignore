@@ -1,8 +1,8 @@
-pascal-test/*.bin
-pascal-test/*.elf
-pascal-test/*.hex
-pascal-test/*.o
-pascal-test/*.ppu
-pascal-test/*.s
+*.bin
+*.elf
+*.hex
+*.o
+*.ppu
+*.s
 compiler/trunk.tar
 f4-i2s-dma-with-floats/

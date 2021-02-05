@@ -1,6 +1,6 @@
 #!/bin/bash
 
-cd pascal-test
+cd src
 
 for FILE in bin elf hex o ppu res s
 do

@@ -14,6 +14,10 @@ case $1 in
     OPTION='run'
     COMMAND='bash ./make'
     ;;
+'clean')
+    OPTION='run'
+    COMMAND='bash ./make clean'
+    ;;
 'run')
     OPTION='run'
     COMMAND='bash'

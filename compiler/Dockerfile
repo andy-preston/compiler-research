@@ -93,23 +93,5 @@ RUN apt-get update && \
 
 COPY --from=buildComp /usr/local/lib/fpc/3.3.1 /usr/local/lib/fpc/3.3.1
 COPY --from=buildComp /usr/local/share/rtl.tar /usr/local/share/rtl.tar
-COPY fpc.cfg /usr/local/lib/fpc/etc/fpc.cfg
 
-RUN ln -s /usr/local/lib/fpc/3.3.1/ppcrossarm /usr/local/bin/fpc && \
-    ln -s /usr/bin/arm-none-eabi-addr2line /usr/bin/arm-embedded-addr2line && \
-    ln -s /usr/bin/arm-none-eabi-ar /usr/bin/arm-embedded-ar && \
-    ln -s /usr/bin/arm-none-eabi-as /usr/bin/arm-embedded-as && \
-    ln -s /usr/bin/arm-none-eabi-c++filt /usr/bin/arm-embedded-c++filt && \
-    ln -s /usr/bin/arm-none-eabi-elfedit /usr/bin/arm-embedded-elfedit && \
-    ln -s /usr/bin/arm-none-eabi-gprof /usr/bin/arm-embedded-gprof && \
-    ln -s /usr/bin/arm-none-eabi-ld /usr/bin/arm-embedded-ld && \
-    ln -s /usr/bin/arm-none-eabi-ld.bfd /usr/bin/arm-embedded-ld.bfd && \
-    ln -s /usr/bin/arm-none-eabi-nm /usr/bin/arm-embedded-nm && \
-    ln -s /usr/bin/arm-none-eabi-objcopy /usr/bin/arm-embedded-objcopy && \
-    ln -s /usr/bin/arm-none-eabi-objdump /usr/bin/arm-embedded-objdump && \
-    ln -s /usr/bin/arm-none-eabi-ranlib /usr/bin/arm-embedded-ranlib && \
-    ln -s /usr/bin/arm-none-eabi-readelf /usr/bin/arm-embedded-readelf && \
-    ln -s /usr/bin/arm-none-eabi-size /usr/bin/arm-embedded-size && \
-    ln -s /usr/bin/arm-none-eabi-strings /usr/bin/arm-embedded-strings && \
-    ln -s /usr/bin/arm-none-eabi-strip /usr/bin/arm-embedded-strip
-
+RUN ln -s /usr/local/lib/fpc/3.3.1/ppcrossarm /usr/local/bin/fpc

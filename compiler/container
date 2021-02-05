@@ -12,7 +12,7 @@ RUN_NAME="running-$APP_NAME"
 case $1 in
 'make')
     OPTION='run'
-    COMMAND='bash ./make'
+    COMMAND="bash ./make $2"
     ;;
 'clean')
     OPTION='run'
@@ -43,7 +43,7 @@ case $OPTION in
     docker build -t $APP_NAME ./$APP_NAME
     ;;
 *)
-    echo "./$APP_NAME/container [make|run|shell|build]"
+    echo "./$APP_NAME/container [make XXXX.pp|clean|run|shell|build]"
     ;;
 esac
 

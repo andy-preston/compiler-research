@@ -17,9 +17,9 @@ then
     FPC_OPTIONS="-Parm -Tembedded -WpSTM32F401CC -Cparmv7em -XParm-none-eabi- \
         -l -a -viwn -al -Xs -O2 -Sgi -Fl."
 
-    fpc $FPC_OPTIONS test.pp
+    fpc $FPC_OPTIONS $1
 
-    arm-none-eabi-objdump -d -s test.elf
+    arm-none-eabi-objdump -d -s $(echo $1 | sed -e 's/\.pp$/.elf/g')
 fi
 
 cd ..

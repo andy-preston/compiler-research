@@ -1,10 +1,12 @@
 program Test;
 
-uses stm32f401xx;
+{$OPTIMIZATION FORCENOSTACKFRAME}
 
-label Endless;
+uses stm32f401xx, startup;
 
 begin
-Endless:
-    goto Endless;
+    {
+        This block is only here to keep the compiler happy
+        code in this block will never be executed
+    }
 end.

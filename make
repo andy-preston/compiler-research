@@ -15,7 +15,7 @@ done
 if [ "$1" != "clean" ]
 then
     FPC_OPTIONS="-Parm -Tembedded -WpSTM32F401CC -Cparmv7em -XParm-none-eabi- \
-        -l -a -viwn -al -Xs -O2 -Sgi -Fl."
+        -l -a -viwn -al -Xs -O2 -Sgi -Fl. -Fl./stm32"
 
     fpc $FPC_OPTIONS $1
 

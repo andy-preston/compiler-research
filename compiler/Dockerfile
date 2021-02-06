@@ -54,12 +54,12 @@ RUN mkdir -p fpc && \
 #                                     #
 #######################################
 
-COPY stm32_unit.patch /usr/local/src
+COPY free_pascal.patch /usr/local/src
 
 RUN svn co http://svn.freepascal.org/svn/fpc/trunk fpc && \
     cd fpc && \
     rm -rf .svn && \
-    patch -p1 -i ../stm32_unit.patch && \
+    patch -p0 -i ../free_pascal.patch && \
     tar cvf /usr/local/share/rtl.tar rtl/embedded/arm/* && \
     ln -s /usr/bin/arm-none-eabi-as /usr/bin/arm-embedded-as && \
     make buildbase installbase CROSSINSTALL=1 OS_TARGET=embedded \

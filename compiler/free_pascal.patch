@@ -1,25 +1,3 @@
---- fpc/compiler/hlcgobj.pas	2021-02-03 15:22:43.000000000 +0000
-+++ fpc/compiler/hlcgobj.pas	2021-02-06 21:15:57.040239599 +0000
-@@ -4827,6 +4827,10 @@
-         end;
-
-       { call startup helpers from main program }
-+      (*
-+       * Andy Preston 6 Feb 12021 21:08:08 - The plan is to include
-+       * no conventional pascal functions, so FPC_INIT_FUNC_TABLE is
-+       * just unwanted dead code
-       if (current_procinfo.procdef.proctypeoption=potype_proginit) then
-        begin
-          { initialize units }
-@@ -4840,6 +4844,7 @@
-          else
-            g_call_system_proc(list,'fpc_libinitializeunits',[],nil).resetiftemp;
-        end;
-+       *)
-
-       list.concat(Tai_force_line.Create);
-
-
 --- fpc/compiler/pmodules.pas	2021-02-03 15:22:44.000000000 +0000
 +++ fpc/compiler/pmodules.pas	2021-02-06 21:26:56.665247698 +0000
 @@ -408,10 +408,13 @@

@@ -1,12 +1,14 @@
-program Test;
+program Blinky;
 
 {$OPTIMIZATION FORCENOSTACKFRAME}
+{$OPTIMIZATION REGVAR}
 
-uses stm32f401xx, startup;
+uses stm32f401xx, constRcc;
+
+label infiniteLoop;
 
 begin
-    {
-        This block is only here to keep the compiler happy
-        code in this block will never be executed
-    }
+    RCC.AHB1ENR := RCC.AHB1ENR or ORD(TAHB1Periph.DMA1);
+infiniteLoop:
+    goto infiniteLoop;
 end.

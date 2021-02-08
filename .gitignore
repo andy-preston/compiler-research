@@ -5,4 +5,4 @@
 *.ppu
 *.s
 compiler/trunk.tar
-f4-i2s-dma-with-floats/
+src/tests/original.pp

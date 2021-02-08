@@ -1,0 +1,6 @@
+{
+   "files.associations": {
+        "*.inc": "pascal",
+        "*.pp": "pascal"
+    }
+}

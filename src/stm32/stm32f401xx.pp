@@ -697,7 +697,7 @@ asm
   .section ".init.interrupt_vectors"
   interrupt_vectors:
   .long _stack_top
-  .long Startup
+  .long Pascalmain
   .long NonMaskableInt_interrupt
   .long 0
   .long MemoryManagement_interrupt

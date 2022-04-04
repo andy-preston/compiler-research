@@ -1,5 +1,4 @@
-FROM ubuntu:bionic AS buildComp
-
+FROM ubuntu:focal AS buildComp
 ENV TERM=linux
 ENV DEBIAN_FRONTEND=noninteractive
 WORKDIR /usr/local/src
@@ -73,8 +72,7 @@ RUN svn co http://svn.freepascal.org/svn/fpc/trunk fpc && \
 #                                               #
 #################################################
 
-FROM ubuntu:bionic
-
+FROM ubuntu:focal
 ENV TERM=linux
 ENV DEBIAN_FRONTEND=noninteractive
 WORKDIR /usr/local/src

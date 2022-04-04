@@ -17,7 +17,7 @@ RUN apt-get update && \
         gcc \
         make \
         patch \
-        subversion \
+        git \
         tar \
         wget && \
     apt-get -y --purge remove cmdtest && \
@@ -55,9 +55,9 @@ RUN mkdir -p fpc && \
 
 COPY free_pascal.patch /usr/local/src
 
-RUN svn co http://svn.freepascal.org/svn/fpc/trunk fpc && \
-    cd fpc && \
-    rm -rf .svn && \
+RUN git clone --progress https://gitlab.com/freepascal.org/fpc/source.git && \
+    cd source && \
+    rm -rf .git && \
     patch -p1 -i ../free_pascal.patch && \
     tar cvf /usr/local/share/rtl.tar rtl/embedded/arm/* && \
     ln -s /usr/bin/arm-none-eabi-as /usr/bin/arm-embedded-as && \

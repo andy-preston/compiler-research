@@ -6,44 +6,52 @@
 #
 # docker system prune --volumes -a
 
-APP_NAME="compiler"
-RUN_NAME="running-$APP_NAME"
+DOCKER_DIR=$(dirname $(realpath $0))
+HOST_WORK_DIR=$(realpath ${DOCKER_DIR}/..)
+CONT_WORK_DIR='/usr/local/src'
+CONT_NAME="compiler"
+RUN_NAME="running-${CONT_NAME}"
 
 case $1 in
 'make')
-    OPTION='run'
+    INTERACTIVE=''
     COMMAND="bash ./make $2"
     ;;
 'clean')
-    OPTION='run'
+    INTERACTIVE=''
     COMMAND='bash ./make clean'
     ;;
-'run')
-    OPTION='run'
+'shell')
+    INTERACTIVE='--interactive --tty'
     COMMAND='bash'
     ;;
 *)
-    OPTION=$1
+    echo "./$APP_NAME/container [make XXXX.pp|clean|shell]"
+    exit
     ;;
 esac
 
-case $OPTION in
-'run')
+if (docker ps | grep -q ${RUN_NAME})
+then
+    echo 'Container already running'
+
+    docker container exec \
+        ${INTERACTIVE} \
+        --workdir ${CONT_WORK_DIR} \
+        ${RUN_NAME} \
+        ${COMMAND}
+else
+    echo 'Starting new container'
+
+    docker build --tag ${CONT_NAME} ${DOCKER_DIR}
+
     docker run \
         --rm \
-        --interactive --tty \
+        ${INTERACTIVE} \
+        --workdir ${CONT_WORK_DIR} \
         --user $(id -u):$(id -g) \
-        --volume $(pwd):/usr/local/src \
-        --name $RUN_NAME $APP_NAME $COMMAND
-    ;;
-'shell')
-    docker container exec -it $RUN_NAME bash
-    ;;
-'build')
-    docker build -t $APP_NAME ./$APP_NAME
-    ;;
-*)
-    echo "./$APP_NAME/container [make XXXX.pp|clean|run|shell|build]"
-    ;;
-esac
-
+        --volume ${HOST_WORK_DIR}:${CONT_WORK_DIR} \
+        --name ${RUN_NAME} \
+        ${CONT_NAME} \
+        ${COMMAND}
+fi

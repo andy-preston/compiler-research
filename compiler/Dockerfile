@@ -38,9 +38,9 @@ RUN apt-get update && \
 
 RUN mkdir -p fpc && \
     cd fpc && \
-    wget https://sourceforge.net/projects/freepascal/files/Linux/3.2.0/fpc-3.2.0-x86_64-linux.tar && \
-    tar xvf fpc-3.2.0-x86_64-linux.tar && \
-    cd fpc-3.2.0-x86_64-linux && \
+    wget --progress=bar:force:noscroll https://mirror.freemirror.org/pub/fpc/dist/3.2.2/x86_64-linux/fpc-3.2.2.x86_64-linux.tar && \
+    tar xvf fpc-3.2.2.x86_64-linux.tar && \
+    cd fpc-3.2.2.x86_64-linux && \
     rm demo.tar.gz doc-pdf.tar.gz && \
     echo /usr/local | ./install.sh && \
     cd && \

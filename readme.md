@@ -26,5 +26,7 @@ compiler toolchain. A Dockerfile is included to provide this.
 ## Quick start
 
 `./toolchain/container make` builds the `main.elf` application
+
 `./toolchain/container dump` provides a disassembly listing of main.elf
+
 `./toolchain/container make clean` removes built files

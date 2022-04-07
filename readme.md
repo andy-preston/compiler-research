@@ -1,11 +1,11 @@
-# Minimal STM32F411 Black Pill
+# Minimal STM32F401 Black Pill
 
 This project is a very minimalist template project for STM32F4 microcontrollers.
 It's "all batteries included" and requires no third party libraries/vendor code (excluding toolchain code).
 
 Forked from https://github.com/samvrlewis/minimal-stm32
 
-It intended for the STM32F411 Black Pill Development Board but it should be
+It's intended for the STM32F401 Black Pill Development Board but it should be
 possible to modify it to run on other STM32 microcontrollers, with some
 modifications to the linker script and register addresses.
 

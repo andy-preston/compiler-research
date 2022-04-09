@@ -1,0 +1,18 @@
+--- fpc/compiler/pmodules.pas	2021-02-03 15:22:44.000000000 +0000
++++ fpc/compiler/pmodules.pas	2021-02-06 21:26:56.665247698 +0000
+@@ -408,10 +408,13 @@
+ {$push}
+ {$warn 6018 off} { Unreachable code due to compile time evaluation }
+         { CPU targets with microcontroller support can add a controller specific unit }
+-        if ControllerSupport and (target_info.system in (systems_embedded+systems_freertos)) and
++        { Andy Preston 3 Feb 12021 16:53:12 - I want to be able to hack and tweak }
++        { this unit and by including it manually rather than automatically,       }
++        { I can avoid circular dependencies.                                      }
++        { if ControllerSupport and (target_info.system in (systems_embedded+systems_freertos)) and
+           (current_settings.controllertype<>ct_none) and
+           (embedded_controllers[current_settings.controllertype].controllerunitstr<>'') then
+-          AddUnit(embedded_controllers[current_settings.controllertype].controllerunitstr);
++          AddUnit(embedded_controllers[current_settings.controllertype].controllerunitstr); }
+ {$pop}
+       end;
+

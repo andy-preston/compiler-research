@@ -4,5 +4,7 @@
 *.o
 *.ppu
 *.s
-compiler/trunk.tar
-src/tests/original.pp
+/pascal/compiler/trunk.tar
+/pascal/src/tests/original.pp
+/rust/target/
+/rust/Cargo.lock

@@ -1,0 +1,45 @@
+[package]
+authors = ["Andy Preston <edgeeffect@gmail.com>"]
+name = "stm32f401_black_pill"
+version = "0.0.1"
+edition = "2018"
+description = "Board Support crate for STM32F401 Black Pill development board"
+repository = "https://gitlab.com/edgeeffect/stm32f401-black-pill"
+readme = "README.md"
+license = "0BSD"
+keywords = [
+    "arm",
+    "cortex-m",
+    "stm32f401",
+    "black",
+    "pill",
+    "template",
+]
+categories = [
+    "embedded",
+    "no-std",
+]
+
+[dependencies]
+cortex-m = "0.6"
+cortex-m-rt = "0.6"
+embedded-hal = "0.2"
+stm32f4xx-hal = { version = "0.8", features = ["rt", "stm32f401"] }
+
+[dev-dependencies]
+# used by serial-echo example
+nb = "0.1"
+# used by button-rtic example to log program state
+cortex-m-semihosting = "0.3"
+# used by examples to provide panic handler
+panic-semihosting = "0.5"
+# used by button-rtic example
+cortex-m-rtic = "0.5"
+
+[profile.dev]
+debug = true
+
+[profile.release]
+debug = true
+lto = true
+opt-level = "s"

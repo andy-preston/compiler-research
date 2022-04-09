@@ -1,0 +1,8 @@
+*.bin
+*.elf
+*.hex
+*.o
+*.ppu
+*.s
+compiler/trunk.tar
+src/tests/original.pp

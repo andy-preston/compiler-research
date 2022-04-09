@@ -1,0 +1,61 @@
+#!/bin/bash
+
+# TODO: Provide a less "brutal" method for clearing out containers
+#
+# BE CAREFUL - this scrubs you whole system's Docker files
+#
+# docker system prune --volumes -a
+
+DOCKER_DIR=$(dirname $(realpath $0))
+HOST_WORK_DIR=$(realpath ${DOCKER_DIR}/..)
+CONT_WORK_DIR='/usr/local/src'
+CONT_NAME="arm-toolchain"
+RUN_NAME="running-${CONT_NAME}"
+
+case $1 in
+'make')
+    INTERACTIVE=''
+    COMMAND="make $2"
+    ;;
+'clean')
+    INTERACTIVE=''
+    COMMAND='make clean'
+    ;;
+'dump')
+    INTERACTIVE=''
+    COMMAND='make dump'
+    ;;
+'shell')
+    INTERACTIVE='--interactive --tty'
+    COMMAND='bash'
+    ;;
+*)
+    echo "./$APP_NAME/container [make XXXX.c|clean|dump|shell]"
+    exit
+    ;;
+esac
+
+if (docker ps | grep -q ${RUN_NAME})
+then
+    echo 'Container already running'
+
+    docker container exec \
+        ${INTERACTIVE} \
+        --workdir ${CONT_WORK_DIR} \
+        ${RUN_NAME} \
+        ${COMMAND}
+else
+    echo 'Starting new container'
+
+    docker build --tag ${CONT_NAME} ${DOCKER_DIR}
+
+    docker run \
+        --rm \
+        ${INTERACTIVE} \
+        --workdir ${CONT_WORK_DIR} \
+        --user $(id -u):$(id -g) \
+        --volume ${HOST_WORK_DIR}:${CONT_WORK_DIR} \
+        --name ${RUN_NAME} \
+        ${CONT_NAME} \
+        ${COMMAND}
+fi

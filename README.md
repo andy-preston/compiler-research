@@ -23,24 +23,30 @@ See [rust/README.md](rust/README.md)
 
 ## Goals
 
-My project will consist of a framework written in Thumb assembly language
-for the STM32F401 which will also contain some maths-heavy routines written in
-a high level language.
+This is still very vague. I started thinking that I was going to be using STM-32
+ARM microcontrollers, but I'm now leaning more towards PIC-32 and MIPS.
 
-Based on personal preference, I'd have liked the high level language in question
-to be Pascal (I always preferred Algol style syntax to BCPL style syntax) but
-I'm also considering C as a good-old standby that covers all the bases and Rust
-because I should be thinking about moving with the times.
+My project will consist of a framework written in assembly language which will
+also contain some maths-heavy routines written in a high level language.
+
+Originally I was basing my choices on personal preference, I'd have liked the
+high level language in question to be Pascal (I always preferred Algol style
+syntax to BCPL style syntax). I was also thinking that C could be a "good old
+fashioned" standby.
+
+But I'm now thinking that the most useful thing from an educational angle whould
+be to just use Rust, get used to the horrible C/C++ derived syntax, and start
+using a 21st Century language.
 
 ## Results
 
-### Free Pascal
+### Free Pascal / ARM
 
 Although this has the most points for "it will make me happy", currently I am
 unable to get this to produce instructions for the single precision FPU that
 comes with the STM32F401's Cortex-M4 core.
 
-### GCC
+### GCC / ARM
 
 My test code seems to be producing FPU instructions which is a good start.
 Although there does also seem to be a lot of boilerplate in there to support
@@ -86,3 +92,4 @@ for (int i = 0; i < 200; i++) {
 ### Rust
 
 Not got any further than flashing a basic "blinky" as yet.
+
